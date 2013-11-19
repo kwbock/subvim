@@ -52,83 +52,75 @@ set switchbuf=usetab,newtab     " open new buffers always in new tabs
 let macvim_skip_colorscheme=1
 let g:molokai_original=1
 colorscheme molokai
-highlight SignColumn guibg=#272822   
+highlight SignColumn guibg=#272822
 
-if has("gui_macvim")
-  " No toolbars, menu or scrollbars in the GUI
-  set guifont=Source\ Code\ Pro\ for\ Powerline:h12 "TODO: include these fonts by default
-  set clipboard+=unnamed
-  set vb t_vb=
-  set guioptions-=m  "no menu
-  set guioptions-=T  "no toolbar
-  set guioptions-=l
-  set guioptions-=L
-  set guioptions-=r  "no scrollbar
-  set guioptions-=R
+" No toolbars, menu or scrollbars in the GUI
+" set guifont=Source\ Code\ Pro\ for\ Powerline:h12 "TODO: include these fonts by default
+set clipboard+=unnamed
 
-  " Open ctrlp with cmd+p
-  let g:ctrlp_map = '<D-p>'
 
-  " Open goto symbol on current buffer
-  nmap <D-r> :MyCtrlPTag<cr>
-  imap <D-r> <esc>:MyCtrlPTag<cr>
+" Open ctrlp with cmd+p
+let g:ctrlp_map = '<C-p>'
 
-  " Open goto symbol on all buffers
-  nmap <D-R> :CtrlPBufTagAll<cr>
-  imap <D-R> <esc>:CtrlPBufTagAll<cr>
+" Open goto symbol on current buffer
+nmap <C-r> :MyCtrlPTag<cr>
+imap <C-r> <esc>:MyCtrlPTag<cr>
 
-  " Open goto file
-  nmap <D-t> :CtrlP<cr>
-  imap <D-t> <esc>:CtrlP<cr>
+" Open goto symbol on all buffers
+nmap <C-R> :CtrlPBufTagAll<cr>
+imap <C-R> <esc>:CtrlPBufTagAll<cr>
 
-  " Comment lines with cmd+/
-  map <D-/> :TComment<cr>
-  vmap <D-/> :TComment<cr>gv
+" Open goto file
+nmap <C-t> :CtrlP<cr>
+imap <C-t> <esc>:CtrlP<cr>
 
-  " Indent lines with cmd+[ and cmd+]
-  nmap <D-]> >>
-  nmap <D-[> <<
-  vmap <D-[> <gv
-  vmap <D-]> >gv
+" Comment lines with cmd+/
+map <C-/> :TComment<cr>
+vmap <C-/> :TComment<cr>gv
 
-  "Open sidebar with cmd+k
-  map <D-k> :NERDTreeTabsToggle<CR>
+" Indent lines with cmd+[ and cmd+]
+nmap <C-]> >>
+nmap <C-[> <<
+vmap <C-[> <gv
+vmap <C-]> >gv
 
-  " This mapping makes Ctrl-Tab switch between tabs. 
-  " Ctrl-Shift-Tab goes the other way.
-  noremap <C-Tab> :tabnext<CR>
-  noremap <C-S-Tab> :tabprev<CR>
+"Open sidebar with cmd+k
+map <C-k> :NERDTreeTabsToggle<CR>
 
-  " switch between tabs with cmd+1, cmd+2,..."
-  map <D-1> 1gt
-  map <D-2> 2gt
-  map <D-3> 3gt
-  map <D-4> 4gt
-  map <D-5> 5gt
-  map <D-6> 6gt
-  map <D-7> 7gt
-  map <D-8> 8gt
-  map <D-9> 9gt
+" This mapping makes Ctrl-Tab switch between tabs.
+" Ctrl-Shift-Tab goes the other way.
+noremap <C-Tab> :tabnext<CR>
+noremap <C-S-Tab> :tabprev<CR>
 
-  " until we have default MacVim shortcuts this is the only way to use it in
-  " insert mode
-  imap <D-1> <esc>1gt
-  imap <D-2> <esc>2gt
-  imap <D-3> <esc>3gt
-  imap <D-4> <esc>4gt
-  imap <D-5> <esc>5gt
-  imap <D-6> <esc>6gt
-  imap <D-7> <esc>7gt
-  imap <D-8> <esc>8gt
-  imap <D-9> <esc>9gt
+" switch between tabs with cmd+1, cmd+2,..."
+map <C-1> 1gt
+map <C-2> 2gt
+map <C-3> 3gt
+map <C-4> 4gt
+map <C-5> 5gt
+map <C-6> 6gt
+map <C-7> 7gt
+map <C-8> 8gt
+map <C-9> 9gt
 
-  " Select text whit shift
-  let macvim_hig_shift_movement = 1
+" until we have default MacVim shortcuts this is the only way to use it in
+" insert mode
+imap <C-1> <esc>1gt
+imap <C-2> <esc>2gt
+imap <C-3> <esc>3gt
+imap <C-4> <esc>4gt
+imap <C-5> <esc>5gt
+imap <C-6> <esc>6gt
+imap <C-7> <esc>7gt
+imap <C-8> <esc>8gt
+imap <C-9> <esc>9gt
 
-  " Stop completion with enter, in addition to default ctrl+y
-  imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
+" Select text whit shift
+let macvim_hig_shift_movement = 1
 
-endif
+" Stop completion with enter, in addition to default ctrl+y
+imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
+
 
 " ----------------------------------------- "
 " Plugin configs 			    			"
@@ -169,7 +161,7 @@ com! MyCtrlPTag call MyCtrlPTag()
 
 " TODO: add javascript and some other languages who doesn't have ctags support
 " coffee: https://gist.github.com/michaelglass/5210282
-" go: http://stackoverflow.com/a/8236826/462233 
+" go: http://stackoverflow.com/a/8236826/462233
 " objc:  http://www.gregsexton.org/2011/04/objective-c-exuberant-ctags-regex/
 " rust: https://github.com/mozilla/rust/blob/master/src/etc/ctags.rust
 let g:ctrlp_buftag_types = {
@@ -196,9 +188,9 @@ let g:delimitMate_expand_space = 1
 let g:nerdtree_tabs_open_on_gui_startup = 0
 
 let g:multi_cursor_use_default_mapping = 0
-let g:multi_cursor_next_key = '<D-d>'
-let g:multi_cursor_prev_key = '<D-u>'
-let g:multi_cursor_skip_key = '<D-k>' "until we got multiple keys support
+let g:multi_cursor_next_key = '<C-d>'
+let g:multi_cursor_prev_key = '<C-u>'
+let g:multi_cursor_skip_key = '<C-k>' "until we got multiple keys support
 let g:multi_cursor_quit_key = '<Esc>'
 
 function! g:UltiSnips_Complete()
